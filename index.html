@@ -4,29 +4,89 @@
 <head>
   <title>Web Sprint 2 Challenge</title>
   <script id="challenge">
+
     // 👉 CHALLENGE 1
     function profileActivation(profile, reason) {
-
+     if(profile.active === true){
+      profile.active = false
+      if(reason){
+        profile.reason = reason
+      }
+    else{
+      return "confirm status manually"
+    }
+     }
+     else{
+      profile.active = true
+      delete profile.reason
+     }
+     return profile
     }
 
     // 👉 CHALLENGE 2
     function mineSweeper(grid, x, y) {
 
-    }
+      if ((x < 1 || x > 3) || (y < 1 || y > 3)){
+      return "invalid coordinates"
+      }
 
+      if(grid[y-1][x-1] === "🟥"){
+        return "🟥 💀" 
+      }
+      
+        if(grid[y-1][x-1] === "🟦"){
+        return "🟦 🥳"
+      }
+
+      return grid
+    }     
     // 👉 CHALLENGE 3
     function booleanize(obj) {
-
+for(let key in obj){
+  
+  if(key.length > 9) {
+return "shorten all prop names to 9 chars or less"
+  }
+  if (obj [key] === 0){
+    obj[key] = false;
+  }
+  else if (obj[key] === 1) {
+    obj[key] = true
+  }
+  else if(obj[key] === null) {
+    delete obj[key]
+  }
+}
+  return obj
     }
+  
+
 
     // 👉 CHALLENGE 4
     function scrub(text, forbidden) {
+      if(!text || !forbidden.length === 0){
+        return text;
+      }
+    const removePunctuationre = text.replace(/[^\w\s]/g, '')
+    const words = removePunctuationre.split(/\s+/)
+    const replacedWords = words.map(word => {
+      if (forbidden.includes(word.toLowerCase())){
+        return 'x'.repeat(word.length)
 
-    }
+      }
+      else{
+        return word;
+      }
+    })
+  
+    const replacedText = replacedWords.join(' ')
+    return replacedText
+  }
+    
 
     // 👉 CHALLENGE 5 (bonus, NOT graded)
     function normalizePhoneNumber(num) {
-
+  
     }
 
     // 👉 CHALLENGE 6 (bonus, NOT graded)
